@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Cocomelon",
+    "email": "i.muvunyi@alustudent.com",
+    "phone": "0781088879",
+    "serviceType": "emotional support",
+    "message": "Heloooooo",
+    "createdAt": "2025-10-21T19:32:25.287Z",
+    "id": 1,
+    "status": "confirmed",
+    "adminNotes": "You're confirmed, so you have to pay $100 ",
+    "confirmedAt": "2025-10-21T19:36:56.485Z"
+  },
+  {
+    "name": "Logger",
+    "email": "titoinnocentmuvunyi26@gmail.com",
+    "phone": "0798636824",
+    "serviceType": "support",
+    "message": "Hiiiiii",
+    "createdAt": "2025-10-22T11:44:28.481Z",
+    "id": 2,
+    "status": "cancelled",
+    "adminNotes": ""
+  }
+]
