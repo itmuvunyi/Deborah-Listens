@@ -29,7 +29,7 @@ export function Testimonials() {
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-balance">Client Testimonials</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Stories of healing, growth, and empowerment from those we've supported
+           50+ Stories of healing, growth, and empowerment from those we've supported
           </p>
         </div>
 
