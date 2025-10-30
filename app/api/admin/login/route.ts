@@ -14,18 +14,45 @@ export async function POST(request: Request) {
     if (email && password) {
       try {
         const prisma = getPrismaClient()
-        if (prisma) {
-          const admin = await prisma.admin.findUnique({
-            where: { email },
-          })
+        if (!prisma) {
+          console.error(" Prisma client is not available - DATABASE_URL may be missing or Prisma not initialized")
+          return NextResponse.json({ ok: false, error: "Database not configured" }, { status: 500 })
+        }
 
-          if (admin && (await bcrypt.compare(password, admin.password))) {
-            isAuthenticated = true
-            sessionToken = admin.id
-          }
+        const normalizedEmail = email.trim().toLowerCase()
+        console.log(" Attempting to find admin with email:", normalizedEmail)
+        
+        // Try normalized email first (if admin was created with normalized email)
+        let admin = await prisma.admin.findUnique({
+          where: { email: normalizedEmail },
+        })
+        
+        // If not found, try original email (in case admin was created before normalization)
+        if (!admin) {
+          console.log(" Not found with normalized email, trying original:", email.trim())
+          admin = await prisma.admin.findUnique({
+            where: { email: email.trim() },
+          })
+        }
+
+        if (!admin) {
+          console.log(" Admin not found for email:", email)
+          return NextResponse.json({ ok: false, error: "Invalid credentials" }, { status: 401 })
+        }
+
+        console.log(" Admin found, comparing password...")
+        const passwordMatch = await bcrypt.compare(password, admin.password)
+        if (passwordMatch) {
+          isAuthenticated = true
+          sessionToken = admin.id
+          console.log(" Password match successful, authentication granted")
+        } else {
+          console.log(" Password mismatch")
+          return NextResponse.json({ ok: false, error: "Invalid credentials" }, { status: 401 })
         }
       } catch (error) {
         console.error(" Database authentication error:", error)
+        return NextResponse.json({ ok: false, error: "Internal authentication error" }, { status: 500 })
       }
     }
 

@@ -64,7 +64,7 @@ export async function getAllContacts() {
       const bookings = await prisma.booking.findMany({
         orderBy: { createdAt: "desc" },
       })
-      return bookings.map((b) => ({
+      return bookings.map((b: any) => ({
         ...b,
         id: b.id,
         createdAt: b.createdAt.toISOString(),

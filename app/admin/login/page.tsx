@@ -2,22 +2,32 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Lock, Mail, Shield } from "lucide-react"
+import { Lock, Mail, Shield, Eye, EyeOff } from "lucide-react"
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [token, setToken] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [showToken, setShowToken] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
+
+  // Clear form data on component mount (e.g., when redirected from logout)
+  useEffect(() => {
+    setEmail("")
+    setPassword("")
+    setToken("")
+    setError(null)
+  }, [])
 
   const submitEmailPassword = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -28,6 +38,7 @@ export default function AdminLoginPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
+        credentials: 'include', // Ensure cookies are included
       })
       const data = await res.json()
       if (res.ok && data.ok) {
@@ -50,6 +61,7 @@ export default function AdminLoginPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token }),
+        credentials: 'include', // Ensure cookies are included
       })
       const data = await res.json()
       if (res.ok && data.ok) {
@@ -109,15 +121,29 @@ export default function AdminLoginPage() {
                       <Lock className="h-4 w-4 inline mr-2" />
                       Password
                     </Label>
-                    <Input
-                      id="password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Enter your password"
-                      className="w-full"
-                      autoComplete="current-password"
-                    />
+                    <div className="relative">
+                      <Input
+                        id="password"
+                        type={showPassword ? "text" : "password"}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Enter your password"
+                        className="w-full pr-10"
+                        autoComplete="current-password"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                        aria-label={showPassword ? "Hide password" : "Show password"}
+                      >
+                        {showPassword ? (
+                          <EyeOff className="h-4 w-4" />
+                        ) : (
+                          <Eye className="h-4 w-4" />
+                        )}
+                      </button>
+                    </div>
                   </div>
 
                   {error && <div className="bg-destructive/10 text-destructive p-3 rounded-lg text-sm">{error}</div>}
@@ -135,15 +161,29 @@ export default function AdminLoginPage() {
                       <Lock className="h-4 w-4 inline mr-2" />
                       Admin Token
                     </Label>
-                    <Input
-                      id="token"
-                      type="password"
-                      value={token}
-                      onChange={(e) => setToken(e.target.value)}
-                      placeholder="Enter your admin token"
-                      className="w-full"
-                      autoComplete="off"
-                    />
+                    <div className="relative">
+                      <Input
+                        id="token"
+                        type={showToken ? "text" : "password"}
+                        value={token}
+                        onChange={(e) => setToken(e.target.value)}
+                        placeholder="Enter your admin token"
+                        className="w-full pr-10"
+                        autoComplete="off"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowToken(!showToken)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                        aria-label={showToken ? "Hide token" : "Show token"}
+                      >
+                        {showToken ? (
+                          <EyeOff className="h-4 w-4" />
+                        ) : (
+                          <Eye className="h-4 w-4" />
+                        )}
+                      </button>
+                    </div>
                   </div>
 
                   {error && <div className="bg-destructive/10 text-destructive p-3 rounded-lg text-sm">{error}</div>}

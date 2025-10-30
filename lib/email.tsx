@@ -12,7 +12,13 @@ const TEMPLATE_ADMIN_RESPONSE = process.env.EMAILJS_TEMPLATE_ADMIN_RESPONSE || "
 
 function initEmailJS() {
   if (!EMAILJS_SERVICE_ID || !EMAILJS_PUBLIC_KEY || !EMAILJS_PRIVATE_KEY) {
-    console.warn("EmailJS not configured. Emails will be logged to console only.")
+    const missing: string[] = []
+    if (!EMAILJS_SERVICE_ID) missing.push("EMAILJS_SERVICE_ID")
+    if (!EMAILJS_PUBLIC_KEY) missing.push("EMAILJS_PUBLIC_KEY")
+    if (!EMAILJS_PRIVATE_KEY) missing.push("EMAILJS_PRIVATE_KEY")
+    console.warn(
+      `EmailJS not configured. Missing: ${missing.join(", ")}. Emails will be logged to console only.`,
+    )
     return false
   }
   return true
@@ -34,7 +40,12 @@ export async function sendBookingConfirmationEmail({
     return true 
   }
 
-  try{
+  if (!TEMPLATE_BOOKING_CONFIRMATION) {
+    console.error(" Missing EMAILJS_TEMPLATE_BOOKING_CONFIRMATION env var")
+    return false
+  }
+
+  try {
     const templateParams = {
       to_email: to,
       to_name: name,
@@ -123,6 +134,11 @@ export async function sendAdminResponseEmail({
     return true
   }
 
+  if (!TEMPLATE_ADMIN_RESPONSE) {
+    console.error(" Missing EMAILJS_TEMPLATE_ADMIN_RESPONSE env var")
+    return false
+  }
+
   try {
     const templateParams = {
       to_email: to,
@@ -159,6 +175,11 @@ export async function sendEmail({
   if (!initEmailJS()) {
     console.log(" Email would be sent:", { to, subject, type: "generic" })
     return true
+  }
+
+  if (!TEMPLATE_ADMIN_RESPONSE) {
+    console.error(" Missing EMAILJS_TEMPLATE_ADMIN_RESPONSE env var for generic emails")
+    return false
   }
 
   try {

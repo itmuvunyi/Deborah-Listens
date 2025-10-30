@@ -41,6 +41,13 @@ export default function AdminBookingsPage() {
   const [responseMessage, setResponseMessage] = useState("")
   const [actionLoading, setActionLoading] = useState(false)
 
+  const buildMailtoHref = () => {
+    const to = selectedBooking?.email || ""
+    const subject = responseSubject || "Message from Deborah Listens"
+    const body = responseMessage || ""
+    return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+  }
+
   const fetchRows = async () => {
     setLoading(true)
     setError(null)
@@ -398,6 +405,11 @@ export default function AdminBookingsPage() {
                                 >
                                   {actionLoading ? "Sending..." : "Send Email"}
                                 </Button>
+                                <a href={buildMailtoHref()} target="_blank" rel="noopener noreferrer" className="block">
+                                  <Button variant="outline" className="w-full mt-2">
+                                    Open in Mail App
+                                  </Button>
+                                </a>
                               </div>
                             </DialogContent>
                           </Dialog>

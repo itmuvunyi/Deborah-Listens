@@ -35,7 +35,7 @@ export function Contact() {
       try {
         data = await res.json()
       } catch (jsonError) {
-        console.error("[v0] Failed to parse JSON response:", jsonError)
+        console.error(" Failed to parse JSON response:", jsonError)
         setStatus("error")
         return
       }
@@ -44,11 +44,11 @@ export function Contact() {
         setStatus("success")
         setFormData({ name: "", email: "", phone: "", message: "", serviceType: "" })
       } else {
-        console.error("[v0] Booking failed:", data.error || "Unknown error")
+        console.error(" Booking failed:", data.error || "Unknown error")
         setStatus("error")
       }
     } catch (err) {
-      console.error("[v0] Network error:", err)
+      console.error(" Network error:", err)
       setStatus("error")
     }
   }

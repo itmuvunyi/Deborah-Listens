@@ -10,10 +10,24 @@ export function AdminNav() {
 
   const handleLogout = async () => {
     try {
-      await fetch("/api/admin/logout", { method: "POST" })
-      router.push("/admin/login")
+      // Call logout API to clear server-side session
+      const res = await fetch("/api/admin/logout", { 
+        method: "POST",
+        credentials: 'include', // Ensure cookies are included
+      })
+      
+      if (res.ok) {
+        // Force a hard redirect to ensure session is completely cleared
+        window.location.href = "/admin/login"
+      } else {
+        console.error("Logout failed:", res.statusText)
+        // Still redirect even if API call fails
+        window.location.href = "/admin/login"
+      }
     } catch (err) {
       console.error("Logout error:", err)
+      // Still redirect on error to ensure user gets to login page
+      window.location.href = "/admin/login"
     }
   }
 

@@ -2,7 +2,7 @@ let PrismaClient: any
 let prisma: any = null
 
 try {
-  const prismaModule = require("@prisma/client")
+  const prismaModule = require("./generated/prisma") 
   PrismaClient = prismaModule.PrismaClient
 
   const globalForPrisma = globalThis as unknown as {
@@ -15,7 +15,7 @@ try {
     globalForPrisma.prisma = prisma
   }
 } catch (error) {
-  console.log("[v0] Prisma not available, using JSON fallback:", String(error))
+  console.log(" Prisma not available, using JSON fallback:", String(error))
   prisma = null
 }
 

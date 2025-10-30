@@ -3,7 +3,7 @@
  * Run with: npx tsx scripts/create-admin-user.ts
  */
 
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from "../lib/generated/prisma"
 import * as bcrypt from "bcryptjs"
 import * as readline from "readline"
 
@@ -33,13 +33,16 @@ async function createAdmin() {
       process.exit(1)
     }
 
+    // Normalize email (trim and lowercase for consistency)
+    const normalizedEmail = email.trim().toLowerCase()
+
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10)
 
     // Create admin user
     const admin = await prisma.admin.create({
       data: {
-        email,
+        email: normalizedEmail,
         password: hashedPassword,
         name: name || undefined,
       },

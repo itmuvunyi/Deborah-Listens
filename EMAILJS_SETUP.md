@@ -144,7 +144,7 @@ Replace the placeholder values with the actual IDs and keys you copied from Emai
 
 1. **Check your environment variables** - Make sure all IDs and keys are correct
 2. **Check EmailJS dashboard** - Go to the "Logs" section to see if requests are being received
-3. **Check console logs** - Look for `[v0]` prefixed messages in your terminal
+3. **Check console logs** - Review server logs for any email-related errors in your terminal
 4. **Verify email service** - Make sure your email service is properly connected in EmailJS
 5. **Check spam folder** - Sometimes emails end up in spam
 

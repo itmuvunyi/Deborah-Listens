@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { getAllContacts } from "@/lib/db"
+import { getAuthToken, validateAdminAuth } from "@/lib/auth"
 
 function unauthorized() {
   return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 })
@@ -8,17 +9,14 @@ function unauthorized() {
 export async function GET(request: Request) {
   try {
     // Authentication: accept cookie (admin_token), bearer token, or ?token=
-    const url = new URL(request.url)
-    const tokenFromQuery = url.searchParams.get("token")
-    const authHeader = request.headers.get("authorization")
-    const bearer = authHeader?.startsWith("Bearer ") ? authHeader?.slice(7) : null
-    const cookieHeader = request.headers.get("cookie") || ""
-    const cookieMatch = cookieHeader.match(/(?:^|; )admin_token=([^;]+)/)
-    const cookieToken = cookieMatch ? decodeURIComponent(cookieMatch[1]) : null
-    const token = bearer || tokenFromQuery || cookieToken
-    const ADMIN_TOKEN = process.env.ADMIN_TOKEN
-    if (!ADMIN_TOKEN || !token || token !== ADMIN_TOKEN) return unauthorized()
+    const token = getAuthToken(request)
+    const isAuthenticated = await validateAdminAuth(token)
+    
+    if (!isAuthenticated) {
+      return unauthorized()
+    }
 
+    const url = new URL(request.url)
     const format = url.searchParams.get("format") || "json"
     const rows = await getAllContacts() // Updated to use async getAllContacts
 

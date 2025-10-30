@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { insertContact } from "@/lib/db"
-import { sendEmail, generateBookingConfirmationEmail } from "@/lib/email"
+import { sendEmail, generateBookingConfirmationEmail, sendBookingConfirmationEmail } from "@/lib/email"
 
 type Contact = {
   name: string
@@ -38,11 +38,11 @@ export async function POST(request: Request) {
 
     if (contact.email) {
       console.log(" Sending confirmation email to user")
-      sendEmail({
+      sendBookingConfirmationEmail({
         to: contact.email,
-        subject: "Booking Received - Deborah Listens",
-        html: generateBookingConfirmationEmail(contact.name, contact.serviceType),
-      }).catch((err) => console.error("[v0] Failed to send user confirmation email:", err))
+        name: contact.name,
+        bookingId: String(id),
+      }).catch((err) => console.error(" Failed to send user confirmation email:", err))
     }
 
     const adminEmail = process.env.ADMIN_EMAIL
