@@ -35,16 +35,18 @@ export async function POST(request: Request) {
     }
 
     // Send email
-    try {
-      await sendAdminResponseEmail({
-        to: contact.email,
-        name: contact.name,
-        message: message,
-        subject,
-      })
-    } catch (emailError) {
-      console.error("Failed to send response email:", emailError)
-      return NextResponse.json({ ok: false, error: "Failed to send email" }, { status: 500 })
+    const emailSent = await sendAdminResponseEmail({
+      to: contact.email,
+      name: contact.name,
+      message: message,
+      subject,
+    })
+
+    if (!emailSent) {
+      return NextResponse.json({ 
+        ok: false, 
+        error: "Failed to send email. Please check your EmailJS template configuration or use the 'Open in Mail App' button instead." 
+      }, { status: 500 })
     }
 
     return NextResponse.json({ ok: true })

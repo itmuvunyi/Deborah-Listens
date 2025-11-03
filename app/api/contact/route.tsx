@@ -60,7 +60,7 @@ export async function POST(request: Request) {
           <p><strong>Message:</strong> ${contact.message}</p>
           <p><strong>Booking ID:</strong> ${id}</p>
         `,
-      }).catch((err) => console.error("[v0] Failed to send admin notification email:", err))
+      }).catch((err) => console.error("Failed to send admin notification email:", err))
     }
 
     console.log(" Returning success response")

@@ -155,8 +155,17 @@ export async function sendAdminResponseEmail({
 
     console.log(" Admin response email sent successfully")
     return true
-  } catch (error) {
-    console.error(" Failed to send admin response email:", error)
+  } catch (error: any) {
+    const errorMessage = error?.text || error?.message || String(error)
+    if (errorMessage.includes("template ID not found")) {
+      console.error(" Failed to send admin response email: Template ID not found. Please:")
+      console.error(" 1. Create an Admin Response template in EmailJS dashboard")
+      console.error(" 2. Copy the template ID")
+      console.error(" 3. Set EMAILJS_TEMPLATE_ADMIN_RESPONSE in your .env file")
+      console.error(" 4. Or use the 'Open in Mail App' button as a workaround")
+    } else {
+      console.error(" Failed to send admin response email:", errorMessage)
+    }
     return false
   }
 }
