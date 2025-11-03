@@ -8,7 +8,9 @@
     "postinstall": "prisma generate || echo 'Prisma generation skipped'",
     "lint": "eslint .",
     "start": "next start",
-    "db:push": "prisma db push"
+    "db:push": "prisma db push",
+    "admin:create": "tsx scripts/create-admin-user.ts",
+    "admin:update-password": "tsx scripts/update-admin-password.ts"
   },
   "dependencies": {
     "@emailjs/nodejs": "latest",
