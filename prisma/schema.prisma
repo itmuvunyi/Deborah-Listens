@@ -11,8 +11,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  // TEMPORARY FIX: Use the actual URL to force validation success
-  url      = "postgresql://deborah_listens_db_user:qPLSUz6tQldY5vOWfOIRLuLi1ZG51EpK@dpg-d3t2g4buibrs73amg0jg-a.oregon-postgres.render.com/deborah_listens_db?sslmode=require"
+  url      = env("DATABASE_URL")
 }
 
 model Admin {
