@@ -8,7 +8,7 @@ export function About() {
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-balance">About Deborah Listens</h2>
             <p className="text-lg text-muted-foreground">
-              Dedicated to supporting women, youth, and girls through life's challenges
+              Dedicated to supporting all people through life's challenges
             </p>
           </div>
 
@@ -23,7 +23,7 @@ export function About() {
                   </div>
                   <p className="text-muted-foreground leading-relaxed text-sm">
                     As a dedicated lay counselor with eight years of experience, I specialize in providing emotional
-                    support and guidance to individuals facing various challenges. My work has encompassed supporting
+                    support and guidance to individuals facing various challenges and team building. My work has encompassed supporting
                     widows and orphans through post-trauma healing, and working with young girls at Dream Center Network
                     to help them overcome past difficulties and unlock their potential.
                   </p>
@@ -37,8 +37,8 @@ export function About() {
               <Card className="p-6 space-y-4">
                 <h3 className="text-xl font-semibold">Our Mission</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Deborah Listens provides professional lay counselling services exclusively for women, youth, and
-                  girls. We believe in creating a safe, confidential space where you can explore your feelings, overcome
+                  Deborah Listens provides professional lay counselling services inclusively for women, youth, men, and
+                  girls and team building. We believe in creating a safe, confidential space where you can explore your feelings, overcome
                   challenges, and discover your inner strength.
                 </p>
               </Card>
@@ -48,7 +48,7 @@ export function About() {
                 <p className="text-muted-foreground leading-relaxed">
                   We practice empathy-centered counselling through active listening, emotional support, and practical
                   guidance. Every session is tailored to your unique needs, helping you process emotions, develop coping
-                  strategies, and build resilience for personal growth.
+                  strategies, and build resilience for personal growth and team progress.
                 </p>
               </Card>
             </div>
@@ -70,6 +70,10 @@ export function About() {
                   <li className="flex items-start gap-2">
                     <span className="mt-1">•</span>
                     <span>Post-Trauma Healing & Support</span>
+                  </li>
+                   <li className="flex items-start gap-2">
+                    <span className="mt-1">•</span>
+                    <span>Team Building</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1">•</span>
@@ -95,7 +99,7 @@ export function About() {
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start gap-2">
                     <span className="mt-1">✓</span>
-                    <span>Specialized focus on women, youth, and girls</span>
+                    <span>Specialized focus on women, youth, men, girls and team building</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1">✓</span>
