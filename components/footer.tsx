@@ -7,7 +7,7 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-primary">Deborah Listens</h3>
-            <p className="text-sm text-muted-foreground">Professional lay counselling for women, youth, and girls.</p>
+            <p className="text-sm text-muted-foreground">Professional lay counselling for all.</p>
             <div className="space-y-1">
               <p className="text-sm font-medium">Deborah MANARIYO</p>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -74,6 +74,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>Certified Lay Counsellor</li>
               <li>8 Years Experience</li>
+              <li>Team Building and Collaboration</li>
               <li>Post-Trauma Healing Specialist</li>
               <li>Youth & Girls Empowerment</li>
               <li>Active Listening & Guidance</li>
