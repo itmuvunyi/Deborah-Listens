@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Heart, Ear, Users2, Users, Users2, Sparkles, Shield, TrendingUp } from "lucide-react"
+import { Heart, Ear, Lightbulb, Users, Users2, Sparkles, Shield, TrendingUp } from "lucide-react"
 
 const services = [
   {
