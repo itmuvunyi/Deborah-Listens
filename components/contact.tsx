@@ -282,8 +282,8 @@ export function Contact() {
                 <div>
                   <h3 className="font-semibold mb-2">Session Fees</h3>
                   <div className="text-sm text-muted-foreground space-y-1">
-                    <p>1 Hour: 25,000 RWF</p>
-                    <p>2 Hours: 50,000 RWF</p>
+                    <p>Personal Session: 25,000 Rwf( One Hour)</p>
+                    <p>Team or NGO: 150,000 Frw( One hour)</p>
                   </div>
                   <p className="text-xs text-muted-foreground mt-2 italic">
                     Sessions need to be booked ahead of time. Flexible payment options available.
