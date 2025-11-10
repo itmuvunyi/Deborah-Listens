@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Heart, Ear, Lightbulb, Users, Users2, Sparkles, Shield, TrendingUp } from "lucide-react"
+import { Heart, Ear, Users2, Users, Users2, Sparkles, Shield, TrendingUp } from "lucide-react"
 
 const services = [
   {
@@ -61,9 +61,9 @@ const services = [
     details: "60-minute sessions | In-person or online",
   },
   {
-    icon: Lightbulb,
-    title: "Self-Esteem & Personal Growth",
-    description: "Building confidence, discovering your strengths, and creating positive life changes.",
+    icon: Users2,
+    title: "Team Building & Collaboration",
+    description: "Enhancing teamwork, improving communication, and building trust to achieve shared goals together.",
     details: "60-minute sessions | In-person or online",
   },
 ]
@@ -75,7 +75,7 @@ export function Services() {
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-balance">Our Services</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive counselling support tailored to the unique needs of women, youth, and girls
+            Comprehensive counselling support tailored to the unique needs of all
           </p>
         </div>
 
