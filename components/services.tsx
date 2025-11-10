@@ -137,6 +137,19 @@ export function Services() {
                   resilience.
                 </p>
               </div>
+               <div>
+        <h4 className="font-semibold text-sm mb-2">Enhanced Productivity</h4>
+        <p className="text-sm text-muted-foreground">
+          Teams learn to align goals, resolve conflicts efficiently, and leverage each member’s strengths to boost overall performance.
+        </p>
+      </div>
+      <div>
+        <h4 className="font-semibold text-sm mb-2">Positive Organizational Culture</h4>
+        <p className="text-sm text-muted-foreground">
+          By fostering open communication and mutual support, organizations can cultivate a motivating, inclusive, and resilient workplace.
+        </p>
+      </div>
+
               <div>
                 <h4 className="font-semibold text-sm mb-2">Resource Connection</h4>
                 <p className="text-sm text-muted-foreground">
