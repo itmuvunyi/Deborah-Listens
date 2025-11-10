@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Heart, Ear, Lightbulb, Users, Users2, Sparkles, Shield, TrendingUp } from "lucide-react"
+import { Heart, Ear, Lightbulb, Users, Users2, Sparkles, Shield, TrendingUp, UsersCog } from "lucide-react"
 
 const services = [
   {
@@ -68,6 +68,14 @@ const services = [
     description: "Building confidence, discovering your strengths, and creating positive life changes.",
     details: "60-minute sessions | In-person or online",
   },
+  {
+  icon: UsersCog,
+  title: "Team Building & Collaboration",
+  description:
+    "Designed for organizations seeking stronger teams. These sessions enhance communication, trust, and collaboration to boost productivity and morale.",
+  details: "60-minute sessions | In-person or online | Suitable for teams & organizations",
+},
+
 ]
 
 export function Services() {
