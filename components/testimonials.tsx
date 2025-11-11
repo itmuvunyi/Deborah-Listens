@@ -4,8 +4,12 @@ import { Star } from "lucide-react"
 const testimonials = [
   {
     quote:
-      "Deborah Listens provided me with a safe space to process my emotions without judgment. The support I received helped me find my strength again.",
-    author: "Anonymous Client",
+      "Après mon mariage, j'ai traversé une période très difficile à cause de problèmes de conception. Je me sentais perdue et épuisée de faire semblant que tout allait bien. 😔
+
+Un jour, j'ai découvert le témoignage de Deborah Manariyo, une femme très courageuse et pleine d'amour. Son histoire m'a fait réaliser que je n'étais pas seule. J'ai vu son émission sur la chaîne Siren Vibes, l'ai contactée, et elle m'a aidée avec un cœur rempli d'amour. ❤
+
+Grâce à sa bienveillance, j'ai retrouvé la paix, la foi et l'espoir. Elle a été une véritable source de lumière. Je remercie Madame Deborah Manariyo de tout cœur pour son écoute. Que Dieu la bénisse pour le bien qu'elle sème. 🌸
+",
     role: "Individual Counselling",
   },
   {
