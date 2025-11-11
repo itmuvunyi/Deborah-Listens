@@ -11,7 +11,7 @@ const testimonials = [
       contactée, et elle m'a aidée avec un cœur rempli d'amour. ❤
       Grâce à sa bienveillance, j'ai retrouvé la paix, la foi et l'espoir. Elle a été une véritable source de lumière. 
       Je remercie Madame Deborah Manariyo de tout cœur pour son écoute. Que Dieu la bénisse pour le bien qu'elle sème. 🌸`,
-    author: "Owner",
+    author: "Anonymous Client",
     role: "Individual Counselling",
   },
   {
