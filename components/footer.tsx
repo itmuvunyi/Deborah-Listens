@@ -72,7 +72,7 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Professional Credentials</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>Certified Lay Counsellor</li>
+              <li>Lay Counsellor</li>
               <li>8 Years Experience</li>
               <li>Team Building and Collaboration</li>
               <li>Post-Trauma Healing Specialist</li>
