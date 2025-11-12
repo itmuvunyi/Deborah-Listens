@@ -19,7 +19,7 @@ export function About() {
                 <div className="space-y-3">
                   <div>
                     <p className="font-semibold text-lg">Deborah MANARIYO</p>
-                    <p className="text-sm text-muted-foreground">Certified Lay Counsellor, 8 Years Experience</p>
+                    <p className="text-sm text-muted-foreground">Lay Counsellor, 8 Years Experience</p>
                   </div>
                   <p className="text-muted-foreground leading-relaxed text-sm">
                     As a dedicated lay counselor with eight years of experience, I specialize in providing emotional
@@ -65,7 +65,7 @@ export function About() {
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2">
                     <span className="mt-1">•</span>
-                    <span>Certified Lay Counsellor with 8 Years Experience</span>
+                    <span>Lay Counsellor with 8 Years Experience</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1">•</span>
