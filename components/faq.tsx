@@ -34,7 +34,7 @@ const faqs = [
   {
     question: "Do you accept insurance?",
     answer:
-      "We can provide receipts for sessions that may be submitted to your insurance provider for reimbursement, depending on your coverage. Please check with your insurance company about coverage for counselling services.",
+      "We do not offer services on insurance",
   },
   {
     question: "What ages do you work with?",
