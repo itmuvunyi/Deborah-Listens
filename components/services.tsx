@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Heart, Ear, Lightbulb, Users, Users2, Sparkles, Shield, TrendingUp } from "lucide-react"
+import { Heart, Lightbulb, Users, Users2, Sparkles, Shield, TrendingUp } from "lucide-react"
 
 const services = [
   {
@@ -9,12 +9,7 @@ const services = [
     description: "Creating a safe, non-judgmental space for you to express your feelings and experiences.",
     details: "Individual sessions, all ages welcome",
   },
-  {
-    icon: Ear,
-    title: "Active Listening",
-    description: "Ensuring you feel heard and validated, which aids in emotional discharge and understanding.",
-    details: "Compassionate, focused attention",
-  },
+ 
   {
     icon: Lightbulb,
     title: "Practical Guidance",
