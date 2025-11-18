@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Heart, Lightbulb, Users, Users2, Sparkles, Shield, TrendingUp } from "lucide-react"
+import { Heart, Lightbulb, Users2, Sparkles, Shield } from "lucide-react"
 
 const services = [
   {
@@ -17,30 +17,13 @@ const services = [
       "Offering practical advice and strategies to help you cope with personal issues and enhance well-being.",
     details: "Tailored coping strategies and tools",
   },
-  {
-    icon: Users,
-    title: "Resource Connection",
-    description: "Assisting in connecting you to professional resources for comprehensive, tailored support.",
-    details: "Network of support services",
-  },
-  {
-    icon: Users2,
-    title: "Individual Counselling for Women",
-    description: "One-on-one support for anxiety, depression, relationships, life transitions, and personal growth.",
-    details: "60-minute sessions | In-person or online",
-  },
+ 
   {
     icon: Sparkles,
-    title: "Youth Mentorship & Counselling",
+    title: "Youth Mentorship",
     description:
       "Supportive guidance for young people navigating identity, peer pressure, family dynamics, and future planning.",
     details: "45-60 minute sessions | Ages 13-24",
-  },
-  {
-    icon: TrendingUp,
-    title: "Girls' Empowerment Sessions",
-    description: "Building confidence, self-worth, and resilience in girls through individual or small group sessions.",
-    details: "45-minute sessions | Ages 10-18",
   },
   {
     icon: Shield,
@@ -48,16 +31,10 @@ const services = [
     description: "Compassionate, trauma-informed care for those experiencing or recovering from difficult life events.",
     details: "60-90 minute sessions | Flexible scheduling",
   },
-  {
-    icon: Heart,
-    title: "Relationship Counselling",
-    description:
-      "Support for navigating family relationships, friendships, romantic relationships, and interpersonal conflicts.",
-    details: "60-minute sessions | In-person or online",
-  },
+ 
   {
     icon: Users2,
-    title: "Team Building & Collaboration",
+    title: "Team Building",
     description: "Enhancing teamwork, improving communication, and building trust to achieve shared goals together.",
     details: "60-minute sessions | In-person or online",
   },
