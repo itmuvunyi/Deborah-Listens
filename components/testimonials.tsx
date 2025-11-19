@@ -16,8 +16,7 @@ const testimonials = [
   },
   {
     quote:
-      "As a young woman navigating career and relationship challenges, the guidance I received was invaluable. I feel more confident and empowered.",
-    author: "Anonymous Client",
+      "Une jeune femme de 26 ans Souffrant du SOPK et sans règles depuis un an, j'avais perdu l'espoir de concevoir. Après avoir découvert l'histoire de Déborah sur Siren Vibes TV, j'ai finalement pu bénéficier de son accompagnement en juillet 2025. Grâce à ses conseils pratiques sur mon hygiène de vie (alimentation, sport, tisanes), mon cycle est revenu immédiatement après un an d'absence. Déborah a restauré mon espoir. C'est une femme forte et une véritable héroïne."",
     role: "Youth Mentorship",
   },
   {
