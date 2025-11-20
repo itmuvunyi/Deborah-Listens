@@ -21,7 +21,7 @@ const testimonials = [
       j'ai finalement pu bénéficier de son accompagnement en juillet 2025. Grâce à ses conseils pratiques sur mon hygiène de vie (alimentation, sport, tisanes),
       mon cycle est revenu immédiatement après un an d'absence. Déborah a restauré mon espoir. C'est une femme forte et une véritable héroïne.`,
     author: "Anonymous Client",  
-    role: "Youth Mentorship",
+    role: "Practical Guidance",
   },
   {
     quote:
