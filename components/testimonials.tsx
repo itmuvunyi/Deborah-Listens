@@ -12,7 +12,7 @@ const testimonials = [
       Grâce à sa bienveillance, j'ai retrouvé la paix, la foi et l'espoir. Elle a été une véritable source de lumière. 
       Je remercie Madame Deborah Manariyo de tout cœur pour son écoute. Que Dieu la bénisse pour le bien qu'elle sème. 🌸`,
     author: "Anonymous Client",
-    role: "Individual Counselling",
+    role: "Emotional Support",
   },
   {
     quote:
