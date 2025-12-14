@@ -1,11 +1,8 @@
-// app/proxy.ts (or root proxy.ts)
-
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export function proxy(req: NextRequest) {
+export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
-
   // Only protect /admin routes (but allow API endpoints and the login page)
   if (pathname.startsWith('/admin')) {
     // Allow the login page and assets
@@ -20,11 +17,9 @@ export function proxy(req: NextRequest) {
       return NextResponse.redirect(url)
     }
   }
-
   return NextResponse.next()
 }
 
-// Apply to /admin paths only
 export const config = {
   matcher: ['/admin/:path*'],
 }
