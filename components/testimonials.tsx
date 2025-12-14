@@ -65,7 +65,7 @@ export function Testimonials() {
 
         <div className="mt-12 text-center">
           <p className="text-sm text-muted-foreground italic">
-            All testimonials are shared with permission and anonymized to protect client confidentiality
+            All testimonials are shared with permission and anonymized to protect client confidentiality.
           </p>
         </div>
       </div>
