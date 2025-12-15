@@ -25,7 +25,13 @@ const testimonials = [
   },
   {
     quote:
-      `My daughter has grown so much in confidence since starting sessions. She now speaks up for herself and has developed healthy coping strategies.`,
+      `On behalf of My Twin Foundation, we extend our heartfelt appreciation for honoring our invitation and contributing so meaningfully to our Health and Wellbeing Program.
+
+Your insightful guidance and professional support enriched our discussion in a powerful way. Through your words, in our Mbwira Nkumve initiative, you reminded us that healing truly begins within us with commitment, self-awareness, and the courage to take the first step. You emphasized the importance of physical exercise as a valuable tool to ease depression and anxiety, and highlighted the strength that comes from engaging with a supportive community.
+
+Your contribution brought clarity, encouragement, and hope to many. It aligned perfectly with our theme and played a significant role in the success and impact of the entire session.
+
+Thank you for sharing your wisdom, your time, and your heart with us. We deeply appreciate you.`,
     author: "MY TWIN FOUNDATION",
     role: "Team Building",
   },
