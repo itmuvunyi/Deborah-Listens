@@ -23,7 +23,7 @@ const services = [
     title: "Youth Mentorship",
     description:
       "Supportive guidance for young people navigating identity, peer pressure, family dynamics, and future planning.",
-    details: "45-60 minute sessions | Ages 13-24",
+    details: "45-60 minute sessions ",
   },
   {
     icon: Shield,
