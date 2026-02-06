@@ -1,308 +1,289 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Mail, Phone, MapPin, Clock, MessageCircle, Instagram, Youtube, Linkedin, Video } from "lucide-react"
+import React, { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  MessageCircle,
+  Instagram,
+  Youtube,
+  Linkedin,
+  Video,
+  Send,
+  CheckCircle2,
+  AlertCircle,
+} from "lucide-react";
 
 export function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    message: "",
     serviceType: "",
-  })
+    message: "",
+  });
 
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus("loading")
+    e.preventDefault();
+    setStatus("loading");
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-      })
+      });
 
-      let data
-      try {
-        data = await res.json()
-      } catch (jsonError) {
-        console.error(" Failed to parse JSON response:", jsonError)
-        setStatus("error")
-        return
-      }
+      const data = await res.json();
 
       if (res.ok && data.ok) {
-        setStatus("success")
-        setFormData({ name: "", email: "", phone: "", message: "", serviceType: "" })
+        setStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          serviceType: "",
+          message: "",
+        });
       } else {
-        console.error(" Booking failed:", data.error || "Unknown error")
-        setStatus("error")
+        setStatus("error");
       }
-    } catch (err) {
-      console.error(" Network error:", err)
-      setStatus("error")
+    } catch {
+      setStatus("error");
     }
-  }
+  };
 
   return (
-    <section id="contact" className="py-24">
+    <section
+      id="contact"
+      className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-muted/30 to-background"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-balance">Get in Touch</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Ready to start your journey? Reach out to book a confidential session or ask any questions
+        {/* Header */}
+        <div className="text-center space-y-3 mb-12">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
+            Get in Touch
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Ready to start your journey? Reach out to book a confidential
+            session or ask any questions.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <div className="lg:col-span-2">
-            <Card>
-              <CardHeader>
-                <CardTitle>Book a Session</CardTitle>
-                <CardDescription>Fill out the form below and we'll get back to you within 24 hours</CardDescription>
+        <div className="grid lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
+         
+          <div className="lg:col-span-3">
+            <Card className="shadow-lg">
+              <CardHeader className="pb-8">
+                <CardTitle className="text-2xl">Book a Session</CardTitle>
+                <CardDescription>
+                  Fill out the form below and we'll get back to you within 24
+                  hours.
+                </CardDescription>
               </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+
+              <CardContent className="pb-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name *</Label>
+                    <div className="space-y-1.5">
+                      <Label>Full Name *</Label>
                       <Input
-                        id="name"
-                        placeholder="Your name"
+                        required
                         value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        required
+                        onChange={(e) =>
+                          setFormData({ ...formData, name: e.target.value })
+                        }
+                        placeholder="Enter your full name"
                       />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email *</Label>
+
+                    <div className="space-y-1.5">
+                      <Label>Email Address *</Label>
                       <Input
-                        id="email"
                         type="email"
-                        placeholder="your@email.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         required
+                        value={formData.email}
+                        onChange={(e) =>
+                          setFormData({ ...formData, email: e.target.value })
+                        }
+                        placeholder="your.email@example.com"
                       />
                     </div>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number</Label>
+                    <div className="space-y-1.5">
+                      <Label>Phone Number</Label>
                       <Input
-                        id="phone"
-                        type="tel"
-                        placeholder="(123) 456-7890"
                         value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, phone: e.target.value })
+                        }
+                        placeholder="+250 XXX XXX XXX"
                       />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="serviceType">Service Interested In</Label>
+
+                    <div className="space-y-1.5">
+                      <Label>Service Interested In</Label>
                       <Input
-                        id="serviceType"
-                        placeholder="e.g., Emotional Support"
                         value={formData.serviceType}
-                        onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            serviceType: e.target.value,
+                          })
+                        }
+                        placeholder="e.g. Emotional Support"
                       />
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message *</Label>
+                  <div className="space-y-1.5">
+                    <Label>Your Message *</Label>
                     <Textarea
-                      id="message"
-                      placeholder="Tell us a bit about what you're looking for..."
-                      rows={5}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       required
+                      rows={4}
+                      className="resize-none"
+                      value={formData.message}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
+                      placeholder="Tell us how we can help you..."
                     />
                   </div>
 
-                  <div className="bg-muted p-4 rounded-lg text-sm text-muted-foreground">
-                    <p className="font-semibold mb-1">Privacy Notice</p>
-                    <p>
-                      Your information is kept strictly confidential and will only be used to contact you about
-                      counselling services.
+                  {/* Privacy */}
+                  <div className="flex gap-2 bg-primary/5 border border-primary/20 p-3 rounded-lg">
+                    <AlertCircle className="h-4 w-4 text-primary mt-0.5" />
+                    <p className="text-xs text-muted-foreground">
+                      Your information is strictly confidential and will only be
+                      used to contact you about counselling services.
                     </p>
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full" disabled={status === "loading"}>
-                    {status === "loading" ? "Sending…" : "Send Message"}
-                  </Button>
+                  {/* Status */}
                   {status === "success" && (
-                    <div className="bg-green-50 border border-green-200 text-green-800 p-4 rounded-lg">
-                      <p className="font-semibold">Booking received!</p>
-                      <p className="text-sm mt-1">
-                        Thank you for your booking request. You'll receive a confirmation email shortly, and we'll get
-                        back to you within 24 hours.
+                    <div className="flex gap-2 bg-green-50 border border-green-200 p-3 rounded-lg text-green-700">
+                      <CheckCircle2 className="h-4 w-4 mt-0.5" />
+                      <p className="text-xs">
+                        Booking received! We’ll get back to you shortly.
                       </p>
                     </div>
                   )}
+
                   {status === "error" && (
-                    <p className="text-sm text-red-600 mt-2">Something went wrong. Please try again later.</p>
+                    <div className="bg-red-50 border border-red-200 p-3 rounded-lg text-red-700 text-xs">
+                      Something went wrong. Please try again.
+                    </div>
                   )}
+
+                  {/* BUTTON — no extra space below */}
+                  <Button
+                    type="submit"
+                    className="w-full h-10"
+                    disabled={status === "loading"}
+                  >
+                    {status === "loading" ? (
+                      "Sending..."
+                    ) : (
+                      <>
+                        <Send className="h-4 w-4 mr-2" />
+                        Send Message
+                      </>
+                    )}
+                  </Button>
                 </form>
               </CardContent>
             </Card>
           </div>
 
-          <div className="space-y-6">
-            <Card>
+          {/* RIGHT — INFO */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Session Fees */}
+            <Card className="shadow-lg bg-primary/5">
               <CardHeader>
-                <CardTitle className="text-lg">Contact Information</CardTitle>
+                <CardTitle>Session Fees</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <Mail className="h-5 w-5 text-primary mt-0.5" />
+              <CardContent className="space-y-3">
+                <div className="border rounded-lg p-3 bg-card flex justify-between">
                   <div>
-                    <p className="font-medium text-sm">Email</p>
-                    <a
-                      href="mailto:deborahlistens12@gmail.com"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
-                      deborahlistens12@gmail.com
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Phone className="h-5 w-5 text-primary mt-0.5" />
-                  <div>
-                    <p className="font-medium text-sm">Phone</p>
-                    <a href="tel:+250781309303" className="text-sm text-muted-foreground hover:text-primary">
-                      +250 781 309 303
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Instagram className="h-5 w-5 text-primary mt-0.5" />
-                  <div>
-                    <p className="font-medium text-sm">Instagram</p>
-                    <a
-                      href="https://instagram.com/deborahlistens_"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
-                      @deborahlistens_
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Video className="h-5 w-5 text-primary mt-0.5" />
-                  <div>
-                    <p className="font-medium text-sm">TikTok</p>
-                    <a
-                      href="https://www.tiktok.com/@deborahlistens"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
-                      @deborahlistens
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Linkedin className="h-5 w-5 text-primary mt-0.5" />
-                  <div>
-                    <p className="font-medium text-sm">LinkedIn</p>
-                    <a
-                      href="https://www.linkedin.com/in/deborahlistens"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
-                      Deborah Listens
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Youtube className="h-5 w-5 text-primary mt-0.5" />
-                  <div>
-                    <p className="font-medium text-sm">YouTube</p>
-                    <a
-                      href="https://www.youtube.com/@deborahlistens"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
-                      Deborah Listens
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <MessageCircle className="h-5 w-5 text-primary mt-0.5" />
-                  <div>
-                    <p className="font-medium text-sm">WhatsApp</p>
-                    <a href="https://wa.me/250781309303" className="text-sm text-muted-foreground hover:text-primary">
-                      +250 781 309 303
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-primary mt-0.5" />
-                  <div>
-                    <p className="font-medium text-sm">Location</p>
-                    <p className="text-sm text-muted-foreground">
-                      Rwanda
-                      <br />
-                      In-person & Online Sessions Available
+                    <p className="font-semibold">Personal Session</p>
+                    <p className="text-xs text-muted-foreground">
+                      One-on-one counselling
                     </p>
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Clock className="h-5 w-5 text-primary mt-0.5" />
-                  <div>
-                    <p className="font-medium text-sm">Hours</p>
-                    <p className="text-sm text-muted-foreground">
-                      Mon-Fri: 9:00 AM - 6:00 PM
-                      <br />
-                      Sat: 10:00 AM - 2:00 PM
-                      <br />
-                      By Appointment
-                    </p>
+                  <div className="text-right">
+                    <p className="font-bold text-primary">25,000</p>
+                    <p className="text-xs text-muted-foreground">RWF/hr</p>
                   </div>
                 </div>
+
+                <div className="border rounded-lg p-3 bg-card flex justify-between">
+                  <div>
+                    <p className="font-semibold">Team / NGO Session</p>
+                    <p className="text-xs text-muted-foreground">
+                      Group & team building
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-bold text-primary">150,000</p>
+                    <p className="text-xs text-muted-foreground">RWF/hr</p>
+                  </div>
+                </div>
+
+                <Button asChild className="w-full">
+                  <a href="tel:+250781309303">
+                    <Phone className="h-4 w-4 mr-2" />
+                    Call to Book Now
+                  </a>
+                </Button>
               </CardContent>
             </Card>
 
-            <Card className="bg-accent/10 border-accent">
-              <CardContent className="pt-6 space-y-4">
-                <div>
-                  <h3 className="font-semibold mb-2">Session Fees</h3>
-                  <div className="text-sm text-muted-foreground space-y-1">
-                    <p>Personal Session: 25,000 Rwf( One Hour)</p>
-                    <p>Team or NGO: 150,000 Frw( One hour)</p>
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-2 italic">
-                    Sessions need to be booked ahead of time. Flexible payment options available.
-                  </p>
-                </div>
-                <div className="pt-2 border-t">
-                  <h3 className="font-semibold mb-2">Book Your Session</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Contact us to schedule your confidential counselling session.
-                  </p>
-                  <Button variant="outline" className="w-full bg-transparent" asChild>
-                    <a href="tel:+250781309303">Call to Book</a>
-                  </Button>
-                </div>
+            {/* Contact Info */}
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle>Contact Information</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm">
+                <p>
+                  <Mail className="inline h-4 w-4 mr-2 text-primary" />
+                  deborahlistens12@gmail.com
+                </p>
+                <p>
+                  <Phone className="inline h-4 w-4 mr-2 text-primary" />
+                  +250 781 309 303
+                </p>
+                <p>
+                  <MapPin className="inline h-4 w-4 mr-2 text-primary" />
+                  Rwanda (In-person & Online)
+                </p>
+                <p>
+                  <Clock className="inline h-4 w-4 mr-2 text-primary" />
+                  Mon-Fri 9AM-6PM, Sat 10AM-2PM
+                </p>
               </CardContent>
             </Card>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
