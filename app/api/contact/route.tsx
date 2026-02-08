@@ -67,7 +67,7 @@ export async function POST(request: Request) {
     // Send notification email to admin
     if (process.env.ADMIN_EMAIL) {
       await transporter.sendMail({
-        from: `"Website Booking" <${process.env.EMAIL_USER}>`,
+        from: `"Deborah Listens_" <${process.env.EMAIL_USER}>`,
         to: process.env.ADMIN_EMAIL,
         subject: `New Booking Request from ${contact.name}`,
         html: `

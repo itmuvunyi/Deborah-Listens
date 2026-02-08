@@ -21,7 +21,7 @@ export function Navigation() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-primary">Deborah Listens</h1>
+            <h1 className="text-2xl font-bold text-primary cursor-pointer">Deborah Listens_</h1>
           </div>
 
           {/* Desktop Navigation */}
