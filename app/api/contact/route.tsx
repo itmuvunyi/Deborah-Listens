@@ -1,26 +1,28 @@
-import { NextResponse } from "next/server"
-import { insertContact } from "@/lib/db"
-import { sendEmail, generateBookingConfirmationEmail, sendBookingConfirmationEmail } from "@/lib/email"
+import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+import { insertContact } from "@/lib/db";
 
 type Contact = {
-  name: string
-  email: string
-  phone?: string
-  serviceType?: string
-  message: string
-  createdAt: string
-}
+  name: string;
+  email: string;
+  phone?: string;
+  serviceType?: string;
+  message: string;
+  createdAt: string;
+};
 
 export async function POST(request: Request) {
   try {
-    console.log(" Contact form submission received")
-    const body = await request.json()
-    console.log(" Request body:", body)
+    console.log("Contact form submission received");
+
+    const body = await request.json();
 
     // Validate required fields
     if (!body.name || !body.email || !body.message) {
-      console.log(" Missing required fields")
-      return NextResponse.json({ ok: false, error: "Missing required fields" }, { status: 400 })
+      return NextResponse.json(
+        { ok: false, error: "Missing required fields" },
+        { status: 400 },
+      );
     }
 
     const contact: Contact = {
@@ -30,26 +32,43 @@ export async function POST(request: Request) {
       serviceType: body.serviceType || "",
       message: body.message,
       createdAt: new Date().toISOString(),
-    }
+    };
 
-    console.log(" Inserting contact into database")
-    const id = await insertContact(contact)
-    console.log(" Contact saved with ID:", id)
+    // Save to database
+    const id = await insertContact(contact);
 
-    if (contact.email) {
-      console.log(" Sending confirmation email to user")
-      sendBookingConfirmationEmail({
-        to: contact.email,
-        name: contact.name,
-        bookingId: String(id),
-      }).catch((err) => console.error(" Failed to send user confirmation email:", err))
-    }
+    // Nodemailer transporter
+    const transporter = nodemailer.createTransport({
+      host: process.env.EMAIL_HOST,
+      port: Number(process.env.EMAIL_PORT),
+      secure: false, 
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
 
-    const adminEmail = process.env.ADMIN_EMAIL
-    if (adminEmail) {
-      console.log(" Sending notification email to admin")
-      sendEmail({
-        to: adminEmail,
+    // Send confirmation email to user
+    await transporter.sendMail({
+      from: `"Website Booking" <${process.env.EMAIL_USER}>`,
+      to: contact.email,
+      subject: "Booking Confirmation",
+      html: `
+        <h2>Booking Confirmation</h2>
+        <p>Hello ${contact.name},</p>
+        <p>Your booking request has been received successfully.</p>
+        <p><strong>Booking ID:</strong> ${id}</p>
+        <p>We will contact you shortly.</p>
+        <br />
+        <p>Thank you.</p>
+      `,
+    });
+
+    // Send notification email to admin
+    if (process.env.ADMIN_EMAIL) {
+      await transporter.sendMail({
+        from: `"Website Booking" <${process.env.EMAIL_USER}>`,
+        to: process.env.ADMIN_EMAIL,
         subject: `New Booking Request from ${contact.name}`,
         html: `
           <h2>New Booking Request</h2>
@@ -60,13 +79,15 @@ export async function POST(request: Request) {
           <p><strong>Message:</strong> ${contact.message}</p>
           <p><strong>Booking ID:</strong> ${id}</p>
         `,
-      }).catch((err) => console.error("Failed to send admin notification email:", err))
+      });
     }
 
-    console.log(" Returning success response")
-    return NextResponse.json({ ok: true, id })
-  } catch (err) {
-    console.error(" API /api/contact error:", err)
-    return NextResponse.json({ ok: false, error: "Failed to save booking. Please try again." }, { status: 500 })
+    return NextResponse.json({ ok: true, id });
+  } catch (error) {
+    console.error("API /api/contact error:", error);
+    return NextResponse.json(
+      { ok: false, error: "Failed to save booking. Please try again." },
+      { status: 500 },
+    );
   }
 }
